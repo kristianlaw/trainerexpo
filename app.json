@@ -28,6 +28,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "name": {
+      "name": "trainerexpo",
+      "displayName": "trainerexpo"
     }
   }
 }
