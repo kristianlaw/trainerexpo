@@ -2,10 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Progress({ route,  navigation }) {
+export default function Home({ route,  navigation }) {
   return (
     <View style={styles.container}>
-      <Text>Progress!</Text>
+      <Text>Home!</Text>
       <StatusBar style="auto" />
     </View>
   );
