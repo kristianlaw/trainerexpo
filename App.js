@@ -7,6 +7,7 @@ import Progress from './pages/Progress';
 import Trainingplan from './pages/Trainingplan';
 import Home from './pages/Home';
 import Startscreen from './pages/Startscreen';
+import Login from './pages/Login';
 
 
 const Tab = createBottomTabNavigator();
@@ -20,6 +21,7 @@ export default function App() {
         <Tab.Screen name="Startscreen" component={Startscreen} />
         <Tab.Screen name="Progress" component={Progress} />
         <Tab.Screen name="Trainingplan" component={Trainingplan} />
+        <Tab.Screen name="Login" component={Login} />
         </Tab.Navigator>
     </NavigationContainer>
 

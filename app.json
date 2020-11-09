@@ -2,7 +2,6 @@
   "expo": {
     "name": "trainerexpo",
     "slug": "trainerexpo",
-    "displayName": "trainerexpo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,14 +27,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "name": {
-      "name": "trainerexpo",
-      "displayName": "trainerexpo"
-    },
-    "displayName": {
-       "name": "trainerexpo",
-      "displayName": "trainerexpo"
-    }
+    },  
   }
 }
