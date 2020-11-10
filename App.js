@@ -9,7 +9,7 @@ import Home from './pages/Home';
 import Startscreen from './pages/Startscreen';
 import Login from './pages/Login';
 
-
+//
 const Tab = createBottomTabNavigator();
 
 export default function App() {
