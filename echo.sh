@@ -1,1 +1,1 @@
-echo 'NPM run test' npm run test
+echo 'Runs tests' npm run test
