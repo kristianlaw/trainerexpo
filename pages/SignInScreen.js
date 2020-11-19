@@ -7,8 +7,14 @@ export default function SignInScreen({navigation}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    //Sign-in or Login navigation
     const onFooterLinkPress = () => {
         navigation.navigate('Sign Up')
+    }
+
+    //Trainingplan navigation
+    const onFooterLinkPress2 = () => {
+        navigation.navigate('Trainingplan')
     }
 
     const onLoginPress = () => {
@@ -73,6 +79,7 @@ export default function SignInScreen({navigation}) {
                 </TouchableOpacity>
                 <View style={styles.footerView}>
                     <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
+                    <Text onPress={onFooterLinkPress2} style={styles.footerLink}>Trainingplan</Text>
                 </View>
             </KeyboardAwareScrollView>
         </View>
