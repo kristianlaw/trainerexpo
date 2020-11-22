@@ -8,7 +8,7 @@ export default function SignUpScreen({navigation}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-  
+
     const onFooterLinkPress = () => {
         navigation.navigate('Sign In')
     }
@@ -51,7 +51,7 @@ export default function SignUpScreen({navigation}) {
               keyboardShouldPersistTaps="always">
               <Image
                   style={styles.logo}
-                  source={require('../assets/icon.png')}
+                  source={require('../assets/mikementzer2.jpg')}
               />
               <TextInput
                   style={styles.input}
@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
       },
       logo: {
           flex: 1,
-          height: 120,
-          width: 90,
+          height: 200,
+          width: 300,
           alignSelf: "center",
           margin: 30
       },

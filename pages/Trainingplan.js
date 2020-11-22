@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, AsyncStorage, TextInput, FlatList } from 'react-native';
+import { StyleSheet, View, AsyncStorage, TextInput, FlatList, Linking, TouchableOpacity } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import * as SQLite from 'expo-sqlite';
 import { Text, Image, Button, ListItem } from 'react-native-elements';
+import { styles } from '../styles/TrainingplanStyles';
 
 const db = SQLite.openDatabase('trainingdb.db');
 
@@ -57,16 +59,34 @@ export default function Trainingplan({ navigation }) {
             };
 
 
+      const onFooterLinkPress = () => {
+            navigation.navigate('Exercises')
+        }
+
   return (
     <View style={styles.container}>
+    <KeyboardAwareScrollView
+        style={{ flex: 1, width: '100%' }}
+        keyboardShouldPersistTaps="always">
     <View style={styles.header}>
-          <Text h2>Custom gym routine</Text>
-          <Text h5>Make your own gym routine and after completing an exercise press 'Done' on the list</Text>
 
-        <TextInput style={styles.textinput} placeholder='Exercise' onChangeText={exercise => setExercise(exercise)}
-          value={exercise}/>
-        <TextInput style={styles.textinput} placeholder='Reps x Sets' onChangeText={amount => setAmount(amount)}
-          value={amount}/>
+          <Text h2 style={{color: "white", fontWeight: "bold"}}>Custom gym routine</Text>
+          <Text h5 style={{color: "white", marginLeft: 15, marginTop: 10, fontWeight: "bold"}}>Make your own gym routine and after completing an exercise press 'Done' on the list</Text>
+          <Text onPress={onFooterLinkPress} style={styles.footerLink}>Click here for list of exercises</Text>
+
+        <TextInput style={styles.input}
+          placeholder='Exercise'
+          onChangeText={exercise => setExercise(exercise)}
+          value={exercise}
+          underlineColorAndroid="transparent"
+          placeholderTextColor="#aaaaaa"
+        />
+        <TextInput style={styles.input}
+          placeholder='Reps x Sets'
+          onChangeText={amount => setAmount(amount)}
+          value={amount}
+          placeholderTextColor="#aaaaaa"
+        />
 
     <View style={{width: 250, marginLeft: '20%', marginRight: '20%', marginTop: 15}}>
         <Button onPress={save} title="Save" />
@@ -94,44 +114,9 @@ export default function Trainingplan({ navigation }) {
 />
 
         <StatusBar style="auto" />
+
       </View>
+      </KeyboardAwareScrollView>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#00C5FF',
-  },
-  containerone: {
-    flex: 1,
-  },
-  containertwo: {
-    flex: 1,
-    backgroundColor: '#fff',
-    borderTopRightRadius: 70,
-    borderTopLeftRadius: 70,
-  },
-  header: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 0
-  },
-  button : {
-    flex: 1,
-    width: '100%',
-    alignItems: 'center',
-    marginTop: 10
-  },
-  textinput: {
-  marginTop: 10,
-  width: 250,
-  alignItems: 'center',
-  borderWidth: 1,
-},
-listcontainer: {
-    flexDirection: 'row',
-  alignItems: 'center'
-},
-});

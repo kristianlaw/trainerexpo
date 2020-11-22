@@ -2,11 +2,12 @@ import { StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
-import LoadingScreen from './pages/LoadingScreen';
 import HomeScreen from './pages/HomeScreen';
 import SignUpScreen from './pages/SignUpScreen'; //Register
 import SignInScreen from './pages/SignInScreen'; //Login
 import Trainingplan from './pages/Trainingplan'; //Trainingplan
+import Progress from './pages/Progress'; //Trainingplan
+import Exercises from './pages/Exercises'; //Exerciselist
 
 
 const Stack = createStackNavigator();
@@ -29,6 +30,8 @@ export default function App() {
                 <Stack.Screen name="Sign In" component={SignInScreen} />
                 <Stack.Screen name="Sign Up" component={SignUpScreen} />
                 <Stack.Screen name="Trainingplan" component={Trainingplan} />
+                <Stack.Screen name="Progress" component={Progress} />
+                <Stack.Screen name="Exercises" component={Exercises} />
               </>
             )}
           </Stack.Navigator>
