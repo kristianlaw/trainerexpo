@@ -1,71 +1,116 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Dimensions, TextInput, Animated  } from 'react-native';
-import {LineChart, BarChart, PieChart, ProgressChart, ContributionGraph, StackedBarChart} from 'react-native-chart-kit';
-import { VictoryBar, VictoryChart, VictoryTheme } from "victory-native";
-import { Text, Image, Button, ListItem, Slider } from 'react-native-elements';
-import { SliderPicker } from 'react-native-slider-picker';
+import { StyleSheet, View, AsyncStorage, TextInput, FlatList, Linking, TouchableOpacity } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import * as SQLite from 'expo-sqlite';
+import { Text, Image, Button, ListItem } from 'react-native-elements';
+import { styles } from '../styles/TrainingplanStyles';
+
+const db = SQLite.openDatabase('progressdb.db');
+
+export default function Progress({ navigation }) {
+
+  const [exercise, setExercise] = useState(''); //exercise and reps
+  const [weight, setWeight] = useState(''); // weight
+  const [done, setDone] = useState([]);
+
+  useEffect(() => {
+      db.transaction(tx => {
+        tx.executeSql('create table if not exists progress (id integer primary key not null, exercise text, weight text);');
+      });
+      refresh();
+    }, []);
+
+    const save = () => {
+        db.transaction(tx => {
+            tx.executeSql('insert into progress (exercise, weight) values (?, ?);', [exercise, weight]);
+          }, null, refresh
+        )
+      }
+
+      const refresh = () => {
+          db.transaction(tx => {
+            tx.executeSql('select * from progress;', [], (_, { rows }) =>
+              setDone(rows._array)
+            );
+          });
+        }
+
+      const deleteItem = (id) => {
+        db.transaction(
+          tx => {
+            tx.executeSql(`delete from progress where id = ?;`, [id]);
+          }, null, refresh
+        )
+      }
 
 
+      const listSeparator = () => {
+          return (
+            <View
+                  style={{
+                    height: 5,
+                    width: "80%",
+                    backgroundColor: "white",
+                    marginLeft: "10%"
+                  }}
+                />
+              );
+            };
 
-
-export default function Progress({ route,  navigation }) {
-  const [ohp, setOhp] = useState([]); //Overheadpress = pystypunnerrus
-  const [bench, setBench] = useState(0); //Benchpress = penkkipunnerrus
-  const [squat, setSquat] = useState(0); // Kyykky
-  const [slider, setSlider] = useState(0.5);
-
-
-
-  const data = [
-  { exercise: 1, weight: 70 },
-  { exercise: 2, weight: 100 },
-  { exercise: 3, weight: 140 },
-  { exercise: 4, weight: 200 }
-];
-
-
-const chartConfig = {
-  backgroundGradientFrom: "white",
-  backgroundGradientTo: "white",
-  backgroundGradientToOpacity: 1,
-  color: (opacity = 1) => `rgba(0, 197, 255, ${opacity})`,
-  strokeWidth: 2,
-  barPercentage: 0.5,
-  useShadowColorFromDataset: false
-};
-
-// 1/2/3 tarkoittaa 1 levy pystypunnerrus, 2 levyä penkkipunnerrus ja 3 levyä kyykyssä. 1 levy = 20kg per puoli. Sama kuin 60kg/100kg/140kg
   return (
     <View style={styles.container}>
-      <Text h3>Track your progress</Text>
-      <Text style={{marginTop: 10, marginLeft: 15}}>Using the 1/2/3 standard the chart shows how close you are to it procentually</Text>
+    <KeyboardAwareScrollView
+        style={{ flex: 1, width: '100%' }}
+        keyboardShouldPersistTaps="always">
+    <View style={styles.header}>
+
+          <Text h2 style={{color: "white", fontWeight: "bold"}}>Progress</Text>
+          <Text h5 style={{color: "white", marginLeft: 15, marginTop: 10, fontWeight: "bold"}}>Track your progress!</Text>
+
+        <TextInput style={styles.input}
+          placeholder='Exercise and repetitions'
+          onChangeText={exercise => setExercise(exercise)}
+          value={exercise}
+          underlineColorAndroid="transparent"
+          placeholderTextColor="#aaaaaa"
+        />
+        <TextInput style={styles.input}
+          placeholder='Weight'
+          onChangeText={weight => setWeight(weight)}
+          value={weight}
+          placeholderTextColor="#aaaaaa"
+        />
+
+    <View style={{width: 250, marginLeft: '20%', marginRight: '20%', marginTop: 15}}>
+        <Button onPress={save} title="Save" />
+    </View>
+    </View>
 
 
-      <TextInput placeholder='Barchart' onChangeValue={ohp => setOhp(ohp)}
-        value={ohp}/>
 
-        <VictoryChart width={350} theme={VictoryTheme.material}>
-          <VictoryBar data={data} x="exercise" y="weight" />
-        </VictoryChart>
+    <View style={styles.containertwo}>
 
-          <Slider
-            value={slider}
-            onValueChange={(value) => setSlider({ value })}
-          />
-          <Text>Value: {slider}</Text>
+    <FlatList
+      style={{width: '70%', marginLeft: '15%' ,marginRight: '15%', marginTop: 3}}
+      keyExtractor={item => item.id.toString()}
+      data={done}
+      renderItem={({ item }) => (
+          <ListItem bottomDivider>
+            <ListItem.Content>
+              <ListItem.Title>{item.exercise}</ListItem.Title>
+              <ListItem.Subtitle>{item.weight}</ListItem.Subtitle>
+            </ListItem.Content>
+            <Text style={{fontSize: 14, color: '#C8C8C8'}} onPress={() => deleteItem	(item.id)}> Done</Text>
+            <ListItem.Chevron onPress={() => deleteItem(item.id)} />
+          </ListItem>
+        )}
+        />
 
+        <StatusBar style="auto" />
 
-      <StatusBar style="auto" />
+      </View>
+      </KeyboardAwareScrollView>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

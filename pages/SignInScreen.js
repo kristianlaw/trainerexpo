@@ -34,11 +34,13 @@ export default function SignInScreen({navigation}) {
                     .get()
                     .then(firestoreDocument => {
                         if (!firestoreDocument.exists) {
-                            alert("User does not exist anymore.")
+                            alert("There is no user named this.") //jos ei löydy käyttäjää
                             return;
                         }
                         const user = firestoreDocument.data()
-                        navigation.navigate("Home",{user})
+                        navigation.navigate("Home", {
+                          params: { user } //Vaihda mahdollisesti
+                        })
                     })
                     .catch(error => {
                         alert(error)
