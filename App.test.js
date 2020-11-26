@@ -2,6 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import App from './App';
 //Source: https://docs.expo.io/guides/testing-with-jest/
+//Source: https://www.testim.io/blog/react-native-unit-testing/
+//Source: https://blog.expo.io/testing-universal-react-native-apps-with-jest-and-expo-113b4bf9cc44
 //Uses Jest to run test cases
 //npm run test
 
@@ -23,7 +25,7 @@ let etsiTeksti = function(render, element){
 it('finds text in App.js', ()=>{
    let render = renderer.create(
        <App />).toJSON();
-   expect(etsiTeksti(render, 'development')).toBeDefined();
+   expect(etsiTeksti(render, 'development')).toBeDefined(); //olettaa löytävän tekstin "development"
 })
 
 //Snapshot testing
