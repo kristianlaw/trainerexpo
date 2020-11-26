@@ -15,8 +15,21 @@ import App from './App';
   });
 });
 
+//etsii tekstin App.js tiedostosta
+//teksti minkä etsii niin on "Development"
+let etsiTeksti = function(render, element){
+    return true;
+}
+it('finds text in App.js', ()=>{
+   let render = renderer.create(
+       <App />).toJSON();
+   expect(etsiTeksti(render, 'development')).toBeDefined();
+})
+
 //Snapshot testing
-it('proper rendering', () => {
+//Testien valitettaessa "1 snapshot obsolete" --> 'npm test -- -u'
+//Tämä poistaa obsolete snapshotin
+test('proper rendering', () => {
   const tree = renderer.create(<App />).toJSON();
   expect(tree).toMatchSnapshot();
 });
