@@ -21,6 +21,10 @@ export default function SignInScreen({navigation}) {
     const navigationLink3 = () => {
         navigation.navigate('Progress')
     }
+    //GymCamera navigation
+    const navigationLink4 = () => {
+        navigation.navigate('GymCamera')
+    }
 
     const onLoginPress = () => {
         firebase
@@ -87,6 +91,7 @@ export default function SignInScreen({navigation}) {
                     <Text onPress={navigationLink} style={styles.link}>Make an account</Text>
                     <Text onPress={navigationLink2} style={styles.link}>Trainingplan</Text>
                     <Text onPress={navigationLink3} style={styles.link}>Progress</Text>
+                    <Text onPress={navigationLink4} style={styles.link}>GymCamera</Text>
                 </View>
             </KeyboardAwareScrollView>
         </View>

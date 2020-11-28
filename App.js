@@ -8,6 +8,7 @@ import SignInScreen from './pages/SignInScreen'; //Login
 import Trainingplan from './pages/Trainingplan'; //Trainingplan
 import Progress from './pages/Progress'; //Trainingplan
 import Exercises from './pages/Exercises'; //Exerciselist
+import GymCamera from './pages/GymCamera'; //GymCamera
 
 
 const Stack = createStackNavigator();
@@ -32,6 +33,7 @@ export default function App() {
                 <Stack.Screen name="Trainingplan" component={Trainingplan} />
                 <Stack.Screen name="Progress" component={Progress} />
                 <Stack.Screen name="Exercises" component={Exercises} />
+                <Stack.Screen name="GymCamera" component={GymCamera} />
               </>
             )}
           </Stack.Navigator>
