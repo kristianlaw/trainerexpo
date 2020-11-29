@@ -10,11 +10,10 @@ import App from './App';
 const render = renderer.create(<App />).toJSON(); //Luodaan render App.js:stä
 
 //App.js on 1 child element
- describe('<App />', () => {
   test('1 child within', () => {
     expect(render.children.length).toBe(1); //Voi vaihtaa child elementtejen määrää
   });
-});
+
 
 //etsii tekstin App.js tiedostosta
 //teksti minkä etsii niin on "Development"
