@@ -7,13 +7,12 @@ import App from './App';
 //Uses Jest to run test cases
 //npm run test
 
+const render = renderer.create(<App />).toJSON(); //Luodaan render App.js:stä
 
-
-//Our test will be the expected state of the <App /> to have 1 child element:
+//App.js on 1 child element
  describe('<App />', () => {
-  it('1 child within', () => {
-    const tree = renderer.create(<App />).toJSON();
-    expect(tree.children.length).toBe(1);
+  test('1 child within', () => {
+    expect(render.children.length).toBe(1); //Voi vaihtaa child elementtejen määrää
   });
 });
 
@@ -23,8 +22,6 @@ let etsiTeksti = function(render, element){
     return true;
 }
 it('finds text in App.js', ()=>{
-   let render = renderer.create(
-       <App />).toJSON();
    expect(etsiTeksti(render, 'development')).toBeDefined(); //olettaa löytävän tekstin "development"
 })
 
@@ -32,6 +29,5 @@ it('finds text in App.js', ()=>{
 //Testien valitettaessa "1 snapshot obsolete" --> 'npm test -- -u'
 //Tämä poistaa obsolete snapshotin
 test('proper rendering', () => {
-  const tree = renderer.create(<App />).toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(render).toMatchSnapshot();
 });
