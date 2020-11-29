@@ -6,31 +6,32 @@ import * as SQLite from 'expo-sqlite';
 import { Text, Image, Button, ListItem } from 'react-native-elements';
 import { styles } from '../styles/TrainingplanStyles';
 
-const db = SQLite.openDatabase('progressdb.db');
+const db = SQLite.openDatabase('progdb.db');
 
 export default function Progress({ navigation }) {
 
   const [exercise, setExercise] = useState(''); //exercise and reps
   const [weight, setWeight] = useState(''); // weight
+  const [mass, setMass] = useState(''); // Mass
   const [done, setDone] = useState([]);
 
   useEffect(() => {
       db.transaction(tx => {
-        tx.executeSql('create table if not exists progress (id integer primary key not null, exercise text, weight text);');
+        tx.executeSql('create table if not exists prog (id integer primary key not null, exercise text, weight text, mass text);');
       });
       refresh();
     }, []);
 
     const save = () => {
         db.transaction(tx => {
-            tx.executeSql('insert into progress (exercise, weight) values (?, ?);', [exercise, weight]);
+            tx.executeSql('insert into prog (exercise, weight, mass) values (?, ?, ?);', [exercise, weight, mass]);
           }, null, refresh
         )
       }
 
       const refresh = () => {
           db.transaction(tx => {
-            tx.executeSql('select * from progress;', [], (_, { rows }) =>
+            tx.executeSql('select * from prog;', [], (_, { rows }) =>
               setDone(rows._array)
             );
           });
@@ -39,7 +40,7 @@ export default function Progress({ navigation }) {
       const deleteItem = (id) => {
         db.transaction(
           tx => {
-            tx.executeSql(`delete from progress where id = ?;`, [id]);
+            tx.executeSql(`delete from prog where id = ?;`, [id]);
           }, null, refresh
         )
       }
@@ -81,11 +82,17 @@ export default function Progress({ navigation }) {
           value={weight}
           placeholderTextColor="#aaaaaa"
         />
+        <TextInput style={styles.input}
+          placeholder='Your mass and date'
+          onChangeText={mass => setMass(mass)}
+          value={mass}
+          placeholderTextColor="#aaaaaa"
+        />
 
     <View style={{width: 250, marginLeft: '20%', marginRight: '20%', marginTop: 15}}>
         <Button onPress={save} title="Save" />
     </View>
-    </View>
+  </View>
 
 
 
@@ -100,8 +107,9 @@ export default function Progress({ navigation }) {
             <ListItem.Content>
               <ListItem.Title>{item.exercise}</ListItem.Title>
               <ListItem.Subtitle>{item.weight}</ListItem.Subtitle>
+              <ListItem.Subtitle>{item.mass}</ListItem.Subtitle>
             </ListItem.Content>
-            <Text style={{fontSize: 14, color: '#C8C8C8'}} onPress={() => deleteItem	(item.id)}> Done</Text>
+            <Text style={{fontSize: 14, color: '#C8C8C8'}} onPress={() => deleteItem(item.id)}> Delete</Text>
             <ListItem.Chevron onPress={() => deleteItem(item.id)} />
           </ListItem>
         )}
