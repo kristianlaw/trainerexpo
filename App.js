@@ -10,21 +10,17 @@ import Progress from './pages/Progress'; //Trainingplan
 import Exercises from './pages/Exercises'; //Exerciselist
 import GymCamera from './pages/GymCamera'; //GymCamera
 
-
 const Stack = createStackNavigator();
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
-
-
 
   return (
     <NavigationContainer>
           <Stack.Navigator>
             { user ? (
-              <Stack.Screen name="Home">
-                {props => <HomeScreen {...props} extraData={user} />}
+              <Stack.Screen name="Trainingplan">
+                {props => <Trainingplan {...props} extraData={user} />}
               </Stack.Screen>
             ) : (
               <>
