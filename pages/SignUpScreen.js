@@ -46,6 +46,7 @@ export default function SignUpScreen({navigation}) {
          });
      }
 
+     //KB aware scrollview targettaa fokusoituun kohtaan (esim input) kun painetaan näppäimistö
     return (
       <View style={styles.container}>
           <KeyboardAwareScrollView

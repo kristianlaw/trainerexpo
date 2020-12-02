@@ -15,6 +15,7 @@ export default function Progress({ navigation }) {
   const [mass, setMass] = useState(''); // Mass
   const [done, setDone] = useState([]);
 
+  //Luo uuden tietokannan ja asettaa muuttujat sinne
   useEffect(() => {
       db.transaction(tx => {
         tx.executeSql('create table if not exists prog (id integer primary key not null, exercise text, weight text, mass text);');

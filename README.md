@@ -59,7 +59,7 @@ Installations needed
     ```sh
     expo install expo-camera
     ```
-11. Install Victory Native (Barchart)
+12. Install Victory Native (Barchart)
     ```sh
     npm install --save victory-native
     ```

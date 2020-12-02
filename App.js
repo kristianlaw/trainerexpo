@@ -14,7 +14,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const [user, setUser] = useState(null);
-
+//Jos käyttäjä kirjautuu (user) niin näyttää Trainingplan propseilla.
   return (
     <NavigationContainer>
           <Stack.Navigator>
