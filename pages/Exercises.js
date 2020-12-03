@@ -38,6 +38,7 @@ export default function Exercises({ navigation }) {
      getMuscle();
   });
 
+  //Hakee lihasryhmiä apista
   const getMuscle = () => {
     fetch('https://wger.de/api/v2/exercisecategory/?format=json')
     .then(response => response.json())

@@ -42,7 +42,7 @@ export default function SignInScreen({navigation}) {
                             return;
                         }
                         const user = firestoreDocument.data()
-                        navigation.navigate("Home", {
+                        navigation.navigate("Trainingplan", {
                           params: { user } //Vaihda mahdollisesti
                         })
                     })

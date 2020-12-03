@@ -1,10 +1,11 @@
 # Trainerexpo
 
 ## About Trainerexpo
-This project was part of a school course. The idea was to create an app that helps users with their fitness goals.
+This project was part of a school course. The idea was to create an app that helps users with their fitness goals. My focus was on lightness of the software and fast usability in any situation. 
 
 ## Built with
 * []() React Native
+* []() Expo
 
 ## Getting started
 To get this project working follow these steps.

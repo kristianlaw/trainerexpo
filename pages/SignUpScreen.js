@@ -35,7 +35,7 @@ export default function SignUpScreen({navigation}) {
                      .doc(uid)
                      .set(data)
                      .then(() => {
-                         navigation.navigate("Trainingplan", {user: data}) //navigoi "Home-Screeniin" datan kanssa.
+                         navigation.navigate("Trainingplan", {user: data}) //navigoi "Trainingplan" datan kanssa.
                      })
                      .catch((error) => {
                          alert(error)

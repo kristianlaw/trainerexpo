@@ -5,7 +5,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 //Sivun tarkoituksena käyttää laitteen ominaisuuksia
 //ja tuoda kameralle uuden tarkoituksen peilinä
 //Monilla saleilla ei ole joka kohdassa peiliä, josta katsoa miten tekee liikkeitä
-//Kameran mittasuhteet pidemmät => näkee itsensä paremmin
+
 export default function GymCamera({navigation}) {
   const [gotPerm, setGotPerm] = useState(null); //Saako laite hyväksynnän kameralle
   const [type, setType] = useState(Camera.Constants.Type.back); //Etu-taka kamera
