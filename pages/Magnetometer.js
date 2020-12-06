@@ -4,38 +4,42 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { styles } from '../styles/MagnetometerStyles.js';
 import { Text, Button } from 'react-native-elements';
 
+//Mittaa magneettikentän vaihtelua
+
 export default function Accelerometer() {
   const [data, setData] = useState({
-    x: 0,
-    y: 0,
-    z: 0,
-  });
+          x: 0,
+          y: 0,
+          z: 0,
+        });
+
   const [subscription, setSubscription] = useState(null);
 
   useEffect(() => {
-    _toggle();
+    toggle();
     return () => {
-      _unsubscribe();
+      unsub();
     };
   }, []);
 
-  const _toggle = () => {
+  //Päälle tai pois
+  const toggle = () => {
     if (subscription) {
-      _unsubscribe();
+      unsub();
     } else {
-      _subscribe();
+      subscribe();
     }
   };
 
-  const _slow = () => {
+  const slow = () => {
     Magnetometer.setUpdateInterval(1000);
   };
 
-  const _fast = () => {
+  const fast = () => {
     Magnetometer.setUpdateInterval(16);
   };
 
-  const _subscribe = () => {
+  const subscribe = () => {
     setSubscription(
       Magnetometer.addListener(result => {
         setData(result);
@@ -43,7 +47,7 @@ export default function Accelerometer() {
     );
   };
 
-  const _unsubscribe = () => {
+  const unsub = () => {
     subscription && subscription.remove();
     setSubscription(null);
   };
@@ -51,23 +55,25 @@ export default function Accelerometer() {
   const { x, y, z } = data;
   return (
     <View style={styles.sensor}>
-      <Text h3>Magnetometer:</Text>
+      <Text h3>Magnetometer</Text>
       <View style={{marginTop: 20}}>
-      <Text>
+      <Text h4>
         x: {round(x)} y: {round(y)} z: {round(z)}
       </Text>
       </View>
+
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={_toggle} style={styles.button}>
+        <TouchableOpacity onPress={toggle} style={styles.button}>
           <Text>Toggle on/off</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={_slow} style={[styles.button, styles.middleButton]}>
+        <TouchableOpacity onPress={slow} style={[styles.button, styles.middleButton]}>
           <Text>Slow</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={_fast} style={styles.button}>
+        <TouchableOpacity onPress={fast} style={styles.button}>
           <Text>Fast</Text>
         </TouchableOpacity>
       </View>
+
     </View>
   );
 }
