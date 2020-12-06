@@ -29,8 +29,8 @@ export default function SignInScreen({navigation}) {
     const navigationLink5 = () => {
         navigation.navigate('Magnetometer')
     }
-
-    const onLoginPress = () => {
+    //Kirjautuminen, hakee firebasesta tiedot kuten UID
+    const login = () => {
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
@@ -47,7 +47,7 @@ export default function SignInScreen({navigation}) {
                         }
                         const user = firestoreDocument.data()
                         navigation.navigate("Trainingplan", {
-                          params: { user } //Vaihda mahdollisesti
+                          params: { user } // Navigoi parametreillä
                         })
                     })
                     .catch(error => {
@@ -87,8 +87,8 @@ export default function SignInScreen({navigation}) {
                 />
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => onLoginPress()}>
-                    <Text style={styles.buttonTitle}>Login</Text>
+                    onPress={() => login()}>
+                    <Text style={styles.buttonTitle}>Sign in</Text>
                 </TouchableOpacity>
 
                 <View style={styles.footerView}>

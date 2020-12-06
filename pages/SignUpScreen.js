@@ -14,8 +14,8 @@ export default function SignUpScreen({navigation}) {
         navigation.navigate('Sign In')
     }
 
-    //Salasanan tarkistus
-    const onRegisterPress = () => {
+    //Salasanan tarkistus ja luo firebaseen käyttäjän jolla uid jne.
+    const signup = () => {
          if (password !== confirmPassword) {
              alert("Passwords don't match.")
              return
@@ -96,11 +96,11 @@ export default function SignUpScreen({navigation}) {
               />
               <TouchableOpacity
                   style={styles.button}
-                  onPress={() => onRegisterPress()}>
-                  <Text style={styles.buttonTitle}>Create an account</Text>
+                  onPress={() => signup()}>
+                  <Text style={styles.buttonTitle}>Make an account</Text>
               </TouchableOpacity>
               <View style={styles.footerView}>
-                  <Text style={styles.footerText}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
+                  <Text style={styles.footerText}>Have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign in</Text></Text>
               </View>
           </KeyboardAwareScrollView>
       </View>

@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
-import HomeScreen from './pages/HomeScreen';
 import SignUpScreen from './pages/SignUpScreen'; //Register
 import SignInScreen from './pages/SignInScreen'; //Login
 import Trainingplan from './pages/Trainingplan'; //Trainingplan
@@ -14,6 +13,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const [user, setUser] = useState(null);
+
 //Jos käyttäjä kirjautuu (user) niin näyttää Trainingplan propseilla.
   return (
     <NavigationContainer>

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Camera } from 'expo-camera';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { FontAwesome, Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
-import * as ImagePicker from 'expo-image-picker';
 
 //Sivun tarkoituksena käyttää laitteen ominaisuuksia
 //ja tuoda kameralle uuden tarkoituksen peilinä
