@@ -3,8 +3,7 @@ import { Camera } from 'expo-camera';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { FontAwesome, Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
 
-//Sivun tarkoituksena käyttää laitteen ominaisuuksia
-//ja tuoda kameralle uuden tarkoituksen peilinä
+//Sivun tarkoituksena käyttää laitteen kameraominaisuuksia
 //Monilla saleilla ei ole joka kohdassa peiliä, josta katsoa miten tekee liikkeitä
 
 export default function GymCamera({navigation}) {
