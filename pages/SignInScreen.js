@@ -25,6 +25,10 @@ export default function SignInScreen({navigation}) {
     const navigationLink4 = () => {
         navigation.navigate('GymCamera')
     }
+    //Magnetometer
+    const navigationLink5 = () => {
+        navigation.navigate('Magnetometer')
+    }
 
     const onLoginPress = () => {
         firebase
@@ -92,6 +96,7 @@ export default function SignInScreen({navigation}) {
                     <Text onPress={navigationLink2} style={styles.link}>Trainingplan</Text>
                     <Text onPress={navigationLink3} style={styles.link}>Progress</Text>
                     <Text onPress={navigationLink4} style={styles.link}>GymCamera</Text>
+                    <Text onPress={navigationLink5} style={styles.link}>Magnetometer</Text>
                 </View>
             </KeyboardAwareScrollView>
         </View>

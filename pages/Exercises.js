@@ -10,11 +10,12 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 export default function Exercises({ navigation }) {
   const [muscle, setMuscle] = useState('');
   const [data, setData] = useState([
-      {exercise: 1, weight: 60 },
-      {exercise: 2, weight: 100 },
-      {exercise: 3, weight: 140 },
-      {exercise: 4, weight: 180 }
-      ])
+          {exercise: 1, weight: 60 },
+          {exercise: 2, weight: 100 },
+          {exercise: 3, weight: 140 },
+          {exercise: 4, weight: 180 }
+          ])
+
   const exercises = [
   {
     id: 'Overheadpress',
@@ -125,6 +126,7 @@ export default function Exercises({ navigation }) {
     <VictoryChart width={350} theme={VictoryTheme.material}>
       <VictoryBar data={data} x="exercise" y="weight" />
     </VictoryChart>
+
 </View>
       </KeyboardAwareScrollView>
       <StatusBar style="auto" />
