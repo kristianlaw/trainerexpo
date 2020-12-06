@@ -31,6 +31,7 @@ export default function Accelerometer() {
     }
   };
 
+  //Päivitysintervallit hidas-nopea
   const slow = () => {
     Magnetometer.setUpdateInterval(1000);
   };
@@ -57,6 +58,7 @@ export default function Accelerometer() {
     <View style={styles.sensor}>
       <Text h3>Magnetometer</Text>
       <View style={{marginTop: 20}}>
+
       <Text h4>
         x: {round(x)} y: {round(y)} z: {round(z)}
       </Text>
